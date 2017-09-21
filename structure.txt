@@ -1,0 +1,10 @@
+Shopping
+ components
+    Shopping
+    Cart
+      Cart List (table)
+        Cart Item (table row)
+      Cart Summary
+
+
+    Checkout

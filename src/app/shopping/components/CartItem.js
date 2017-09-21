@@ -5,10 +5,27 @@ import PropTypes from "prop-types";
 export default class CartItem extends Component {
     constructor(props) {
       super(props);
+      this.state = {
+        qty: props.item.qty
+      }
     }
     
     componentDidMount() {
-        
+      // Real DOM
+      // react do not track
+      this.input.focus();
+
+      // uncontrolled component
+      //this.input.value = this.props.item.qty;
+
+      // controllerd component - let react control the value
+    }
+
+    onChangeValue(e) {
+      let target = e.target; // input box
+      this.setState({
+        qty: target.value
+      })
     }
     
     render() {
@@ -19,7 +36,12 @@ export default class CartItem extends Component {
             <td>{item.name}</td>
             <td>{item.price}</td>
             <td>
-              <input value={item.qty} />
+              <input 
+                ref={(elem) => this.input = elem }
+                type="number"
+                value={this.state.qty}
+                onChange={(e) => this.onChangeValue(e)}
+              />
             </td>
             <td>
               {item.price * item.qty}
