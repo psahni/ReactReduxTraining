@@ -47,7 +47,7 @@ export default class CartItem extends Component {
               {item.price * item.qty}
             </td>
             <td>
-              <button>
+              <button onClick={() => this.props.onUpdate(item.id, this.state.qty)}>
                 Update
               </button>
             </td>
