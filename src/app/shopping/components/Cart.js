@@ -14,6 +14,12 @@ export default class Cart extends Component {
         reload: true
       }
     }
+
+    getChildContext() {
+      return {
+        offer: 30
+      }
+    }
     
     componentDidMount() {
        
@@ -66,12 +72,31 @@ export default class Cart extends Component {
     }
 
     updateItem(id, qty) {
-
+      let list = this.state.items.map(item => {})
     }
 
     emptyCart() {
 
     }
+
+    updateItem(id, qty) {      
+      let list = this.state.items.map ( item => {
+          if (item.id != id)
+              return item;
+
+          //BAD, mutablity
+          //item.qty = qty;
+
+          //Good part, immutablity for object
+          return Object.assign({}, item, {qty: qty})
+      });
+
+      this.setState({
+        items: list
+      }, () => {
+        this.recalculate()
+      });      
+  }
 
     refresh() {
       //this.forceUpdate();
@@ -137,5 +162,9 @@ Cart.defaultProps = {
 }
 
 Cart.propTypes = {
-    
+
+}
+
+Cart.childContextTypes = {
+  offer: PropTypes.number
 }
