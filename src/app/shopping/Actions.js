@@ -35,3 +35,36 @@ export function updateItemInCart(id, qty) {
         }
     }
 }
+
+export function updateOrderData(order) {
+    return {
+        type: "ORDER_DATA",
+        payload: {
+            order: order
+        }
+    }
+}
+
+
+export function sendOrderToServer(order, items) {
+    return function(dispatch) {
+        return fetch('http://localhost:7070/api/orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+               info: order,
+               items: items
+            })
+          })
+          .then ( response => response.json())
+          .then ( orderData => {
+                let action = {
+                    type: 'ORDER_SUCCESS'
+                }
+                dispatch(action)
+          })
+    }
+   
+}

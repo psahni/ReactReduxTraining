@@ -1,7 +1,7 @@
 import {render} from "react-dom";
 import React from "react";
 
-import Header from './components/Header';
+import Header from './containers/Header';
 import Footer from './components/Footer';
 
 import Shopping from './shopping/components/Shopping';
@@ -25,8 +25,11 @@ export class App extends React.Component {
         return (
             <div>
                 <Header title="Product App"/>
-                    <Shopping>
-                    </Shopping>
+                    {/* <Shopping>
+                    </Shopping> */}
+                   <div>
+                     {this.props.children}
+                   </div>
                 <Footer company="React App" year={2017}/>
             </div>
         )

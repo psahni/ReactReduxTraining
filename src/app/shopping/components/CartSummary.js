@@ -48,7 +48,7 @@ export default class CartSummary extends PureComponent {
         return (
             <div> 
               <h2>Cart Summary - {this.props.amount}</h2>
-              <h2>Cart Discount - {this.props.amount}</h2>
+              <h2>Cart Discount - {this.state.discount}</h2>
               <h2> Total - {this.props.amount - this.state.discount}</h2>
 
               <button onClick={() => this.applyCoupon()}>

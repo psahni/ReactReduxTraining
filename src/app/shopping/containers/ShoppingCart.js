@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 
 import ShoppingCart 
     from "../components/ShoppingCart";
@@ -25,10 +26,13 @@ function mapReduxDispatchToReactProps(dispatch) {
         //propFun: func
 
         //Option 1
-        addItemToCart: function(item) {
+        addItemToCart2: function(item) {
                            let action = actions.addItemToCart(item);
                            dispatch(action);
-                        }
+                        },
+        // Option 2
+        addItemToCart: bindActionCreators(actions.addItemToCart, dispatch),
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 

@@ -31,17 +31,15 @@ export default class ShoppingCart extends Component {
     }
 
     removeItem(id) {
-         
-
+      this.props.actions.removeItemFromCart(id);
     }
 
-    updateItem(id, qty) {
-        
-
+    updateItem(id, qty) {        
+      this.props.actions.updateItemInCart(id, qty);
     }
 
     emptyCart() {
-
+      this.props.actions.emptyCart();
     }
 
     refresh() {
@@ -75,7 +73,7 @@ export default class ShoppingCart extends Component {
                     Add Item
                 </button>
 
-                <button >
+                <button onClick={ () => this.emptyCart()}>
                     Empty
                 </button>
 

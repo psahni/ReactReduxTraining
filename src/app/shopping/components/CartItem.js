@@ -50,17 +50,14 @@ export default class CartItem extends PureComponent {
                 <td> 
                      <input  ref={(elem) => this.input = elem}
                              type="number"
-
                              value={this.state.qty}
-
                              onChange={(e) => this.onChangeValue(e)}
-
                      />
                 </td>
 
 
                 <td> 
-                     {item.price * item.qty}
+                     {item.price * this.state.qty}
                 </td>
 
                 <td>
