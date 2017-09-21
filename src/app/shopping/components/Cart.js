@@ -35,14 +35,34 @@ export default class Cart extends Component {
           price: Math.ceil(Math.random() * 1000),
           qty: 1
       }
-      this.state.items.push(item);
-      this.forceUpdate();
-      this.recalculate();
-      console.log("total items ", this.state.items.length);
+      // Bad: Mutability
+      // this.state.items.push(item);
+
+      // GOOD
+      //let clone = [...this.state.items];
+      //clone.push(item);
+
+      this.setState({
+        items: [...this.state.items, item]
+      }, () => {
+        // callback, called after applying state
+        // into current state
+        this.recalculate();
+      });
+
+
+      // trigger render method directly
+      //this.forceUpdate();
+      //this.recalculate();
+      //console.log("total items ", this.state.items.length);
     }
 
-    removeItem() {
-
+    removeItem(id) {
+      this.setState({
+        items: this.state.items.filter(item => item.id!=id)
+      }, () => {
+        this.recalculate()
+      })
     }
 
     updateItem(id, qty) {
@@ -96,7 +116,11 @@ export default class Cart extends Component {
                 Summary
               </button>
             </div>
-            <CartList items={this.state.items}>
+            <CartList 
+              items={this.state.items}
+              onUpdate={(id, qty) => this.updateItem(id, qty)}
+              onRemove={(id) => this.removeItem(id)}
+            >
             </CartList>
 
             { 

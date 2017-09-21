@@ -12,11 +12,29 @@ export default class CartList extends Component {
     componentDidMount() {
         
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("next cart list ", nextProps.items.length);
+        console.log("current cart list ", this.props.items.length);
+        if ( this.props.items != nextProps.items) {
+            return true;
+        }
+
+        return false;
+    }
     
     render() {
-        console.log("cart list")
+        console.log("cart list render")
         let {items} = this.props;
-        let rows = items.map(item => (<CartItem key={item.id} item={item}> </CartItem>));
+        let rows = items.map(item => (
+            <CartItem 
+                key={item.id} 
+                item={item} 
+                onRemove={this.props.onRemove}
+                onUpdate={this.props.onUpdate}
+            > 
+            </CartItem>)
+        );
         
         return (
             <div> 

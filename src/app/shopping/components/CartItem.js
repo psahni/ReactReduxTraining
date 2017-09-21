@@ -13,7 +13,7 @@ export default class CartItem extends Component {
     
     render() {
         let {item} = this.props;
-        console.log("cart item");
+        console.log("cart item render");
         return (
           <tr>
             <td>{item.name}</td>
@@ -30,7 +30,7 @@ export default class CartItem extends Component {
               </button>
             </td>
             <td>
-              <button>
+              <button onClick={() => this.props.onRemove(item.id)}>
                 Remove
               </button>
             </td>
