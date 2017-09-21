@@ -2,8 +2,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
-import Cart from './Cart';
-
+import Cart from './Cart.1';
+import ReduxCart from './ReduxCart';
 
 
 export default class Shopping extends Component {
@@ -20,9 +20,10 @@ export default class Shopping extends Component {
         return (
             <div> 
               <h2>Shopping</h2>
-              <Cart>
+              <ReduxCart></ReduxCart>
+              {/* <Cart>
 
-              </Cart>
+              </Cart> */}
             </div>
         )
     }
